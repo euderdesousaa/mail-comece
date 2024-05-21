@@ -1,0 +1,22 @@
+spring:
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+  datasource:
+    url: ${COMECE.DATABASE.URL}
+    username: ${COMECE.DATABASE.USERNAME}
+    password: ${COMECE.DATABASE.PASSWORD}
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${COMECE.MAIL.USERNAME}
+    password: ${COMECE.MAIL.PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
