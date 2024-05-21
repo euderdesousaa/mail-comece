@@ -6,6 +6,6 @@ RUN ./gradlew bootJar --no-daemon
 
 FROM openjdk:21-jdk-slim
 EXPOSE 8080
-COPY /build/lib/*.jar app.jar
+COPY *.jar app.jar
 
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
