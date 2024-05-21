@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bem-vindo ao Nosso Serviço</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .description{
+            border: groove black;
+            border-radius: 3%;
+        }
+
+        .header {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header h1 {
+            color: #333;
+            margin: 0;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .body {
+            margin: 20px 0;
+        }
+
+        .features {
+            margin: 20px 0;
+        }
+
+        .features ul {
+            padding-left: 20px;
+        }
+
+        .cta {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cta a {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+
+        .footer p {
+            color: #333;
+            margin: 5px 0;
+        }
+
+        .footer .highlight {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class='container'>
+    <div class='header'>
+        <h1>Bem-vindo ao Nosso Serviço!</h1>
+    </div>
+    <p class="description" th:text="${user?.description}"></p>
+    <div class='content'>
+        <div class='body'>
+            <p th:text="${'Olá, '+ user?.email}"></p>
+            <p>Estamos muito felizes em tê-lo conosco. A seguir, algumas informações importantes para ajudá-lo a
+                começar:</p>
+        </div>
+        <div class='features'>
+            <h2>Principais Recursos</h2>
+            <ul>
+                <li><strong>Fácil Navegação:</strong> Nossa plataforma é intuitiva e fácil de usar.</li>
+                <li><strong>Suporte 24/7:</strong> Nossa equipe está disponível para ajudá-lo a qualquer momento.</li>
+                <li><strong>Segurança:</strong> Seus dados estão seguros conosco, com proteção de ponta a ponta.</li>
+            </ul>
+        </div>
+        <div class='cta'>
+            <p>Pronto para explorar? Comece agora mesmo clicando no botão abaixo:</p>
+            <a href='https://example.com/login' target='_blank'>Acessar a Plataforma</a>
+        </div>
+        <div class='body'>
+            <p>Se precisar de ajuda, não hesite em entrar em contato com nosso suporte. Estamos aqui para garantir que
+                você tenha a melhor experiência possível.</p>
+            <p>Atenciosamente,<br>A Equipe do Nosso Serviço</p>
+        </div>
+    </div>
+    <div class='footer'>
+        <p>&copy; 2024 Nosso Serviço. Todos os direitos reservados.</p>
+        <p><span class='highlight'>Comece</span> sua jornada conosco hoje!</p>
+    </div>
+</div>
+</body>
+</html>;

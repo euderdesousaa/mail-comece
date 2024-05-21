@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bem-vindo ao Nosso Serviço</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #333;
+        }
+
+        .body {
+            margin: 20px 0;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .footer p {
+            color: #333;
+        }
+
+        .footer .highlight {
+            color: red;
+        }
+
+        .highlight {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class='header'>
+    <h1>Bem-vindo a Comece!</h1>
+</div>
+<div class='content'>
+    <div class='body' >
+        <p th:text="${'Olá '+ user?.fullName}"></p>
+        <p>Estamos muito felizes em tê-lo conosco. Aqui estão algumas informações para ajudá-lo a começar:</p>
+        <ul>
+            <li>Explore os recursos disponíveis e aproveite ao máximo nosso serviço.</li>
+            <li>Se precisar de ajuda, nossa equipe de suporte está à disposição.</li>
+        </ul>
+        <p>Esperamos que você tenha uma excelente experiência!</p>
+        <p>Atenciosamente,<br>
+        <p class='highlight'>Equipe Comece</p>
+    </div>
+</div>
+<div class='footer'>
+    <p class='highlight'>&copy; Comece</p>
+    <p>Todos os direitos reservados.</p>
+
+</div>
+</body>
+</html>
