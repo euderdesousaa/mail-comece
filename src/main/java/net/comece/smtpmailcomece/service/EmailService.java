@@ -4,7 +4,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.comece.smtpmailcomece.model.UserSenderEmail;
+import net.comece.smtpmailcomece.model.UserSender;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -28,7 +28,7 @@ public class EmailService {
     @Value("${COMECE.MAIL.EMAIL}")
     private String toEmail;
 
-    private void sendEmail(UserSenderEmail sender, String templateName, String subject, String toEmail) throws MessagingException {
+    private void sendEmail(UserSender sender, String templateName, String subject, String toEmail) throws MessagingException {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
 
@@ -46,7 +46,7 @@ public class EmailService {
     }
 
     @Async
-    public void emailsSender(UserSenderEmail sender) {
+    public void emailsSender(UserSender sender) {
         try {
             sendEmail(sender, "template.html", "Welcome " + sender.getFullName(), sender.getEmail());
             sendEmail(sender, "comeceTemplate.html", sender.getFullName() + " está a nossa espera", toEmail);

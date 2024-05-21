@@ -2,7 +2,7 @@ package net.comece.smtpmailcomece.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import net.comece.smtpmailcomece.model.UserSenderEmail;
+import net.comece.smtpmailcomece.model.UserSender;
 import net.comece.smtpmailcomece.repository.UserSenderRepository;
 import net.comece.smtpmailcomece.service.EmailService;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class EmailController {
     private final UserSenderRepository repository;
 
     @PostMapping
-    public ResponseEntity<Void> sender(@RequestBody @Valid UserSenderEmail user) {
+    public ResponseEntity<Void> sender(@RequestBody @Valid UserSender user) {
         service.emailsSender(user);
         user.setDateAtCreate(LocalDate.now());
         repository.save(user);
