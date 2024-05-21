@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tb_email")
+@Table(name = "tb_email", schema = "public")
 public class UserSenderEmail extends UserSender {
 
     @Id
