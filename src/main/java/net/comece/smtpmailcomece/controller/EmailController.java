@@ -22,7 +22,7 @@ public class EmailController {
 
     private final UserSenderRepository repository;
 
-    @PostMapping
+    @PostMapping("/send-email")
     public ResponseEntity<Void> sender(@RequestBody @Valid UserSender user) {
         service.emailsSender(user);
         user.setDateAtCreate(LocalDate.now());
