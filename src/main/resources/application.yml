@@ -1,7 +1,6 @@
 spring:
   jpa:
     database: postgresql
-    show-sql: true
   datasource:
     url: ${COMECE.DATABASE.URL}
     username: ${COMECE.DATABASE.USERNAME}
