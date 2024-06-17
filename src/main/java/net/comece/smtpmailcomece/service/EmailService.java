@@ -5,13 +5,19 @@ import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.comece.smtpmailcomece.model.UserSender;
+import net.comece.smtpmailcomece.repository.UserSenderRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+
+import java.time.LocalDate;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Service
 @RequiredArgsConstructor
@@ -22,11 +28,36 @@ public class EmailService {
 
     private final TemplateEngine templateEngine;
 
+    private final UserSenderRepository repository;
     @Value("${COMECE.MAIL.USERNAME}")
     private String emailSender;
 
     @Value("${COMECE.MAIL.EMAIL}")
     private String toEmail;
+
+    private final Queue<UserSender> requestQueue = new ConcurrentLinkedQueue<>();
+
+    private final DatabaseHealthService databaseHealthService;
+
+    @Async
+    public void handleRequest(UserSender requestData) {
+        if (databaseHealthService.isDatabaseUp()) {
+            saveEmail(requestData);
+        } else {
+            emailsSender(requestData);
+            requestQueue.add(requestData);
+        }
+    }
+
+    @Scheduled(fixedRate = 60000)
+    public void processQueue() {
+        if (databaseHealthService.isDatabaseUp()) {
+            while (!requestQueue.isEmpty()) {
+                UserSender requestData = requestQueue.poll();
+                waitEmailDbBack(requestData);
+            }
+        }
+    }
 
     private void sendEmail(UserSender sender, String templateName, String subject, String toEmail) throws MessagingException {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
@@ -45,8 +76,7 @@ public class EmailService {
         log.info("Email sent to {}", toEmail);
     }
 
-    @Async
-    public void emailsSender(UserSender sender) {
+    protected void emailsSender(UserSender sender) {
         try {
             sendEmail(sender, "template.html", "Welcome " + sender.getFullName(), sender.getEmail());
             sendEmail(sender, "comeceTemplate.html", sender.getFullName() + " está a nossa espera", toEmail);
@@ -55,6 +85,17 @@ public class EmailService {
         }
     }
 
+    private void saveEmail(UserSender user) {
+        emailsSender(user);
+        user.setDateAtCreate(LocalDate.now());
+        repository.save(user);
+    }
+
+    private void waitEmailDbBack(UserSender sender){
+        sender.setDateAtCreate(LocalDate.now());
+        repository.save(sender);
+
+    }
 
 }
 

@@ -13,7 +13,7 @@ public class FilterConfig {
         FilterRegistrationBean<DatabaseHealthFilter> registrationBean = new FilterRegistrationBean<>();
 
         registrationBean.setFilter(new DatabaseHealthFilter());
-        registrationBean.addUrlPatterns("/api/v1/*");
+        registrationBean.addUrlPatterns("/api/v1/send-email");
 
         return registrationBean;
     }
