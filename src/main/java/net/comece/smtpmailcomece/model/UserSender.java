@@ -46,6 +46,7 @@ public class UserSender extends UserSenderDescription {
     @Hidden
     private LocalDate dateAtCreate;
 
+    @Enumerated(EnumType.STRING)
     private Segment segment;
 
 
