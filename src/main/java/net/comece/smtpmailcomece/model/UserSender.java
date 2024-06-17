@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.comece.smtpmailcomece.model.enums.Segment;
 
 import java.time.LocalDate;
 
@@ -44,6 +45,8 @@ public class UserSender extends UserSenderDescription {
 
     @Hidden
     private LocalDate dateAtCreate;
+
+    private Segment segment;
 
 
 }
