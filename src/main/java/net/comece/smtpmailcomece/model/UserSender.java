@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,7 +36,7 @@ public class UserSender extends UserSenderDescription {
             example = "Gabriel Toledo")
     private String fullName;
 
-    @Pattern(regexp = "\\(?\\d{2,}\\)?[ -]?\\d{4,}[\\-\\s]?\\d{4}")
+
     @NotBlank
     @Schema(description = "Aqui tem um pattern que padroniza o numero do usuario indepedente da forma que ele colocar vai sair da mesma forma",
             example = "(99) 91234 5678")
