@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import net.comece.smtpmailcomece.model.UserSender;
 import net.comece.smtpmailcomece.service.EmailService;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,8 +16,8 @@ public class EmailController {
     private final EmailService service;
 
     @PostMapping("/send-email")
-    public ResponseEntity<Void> sender(@RequestBody @Valid UserSender user) {
+    public HttpStatus sender(@RequestBody @Valid UserSender user) {
         service.handleRequest(user);
-        return ResponseEntity.ok().build();
+        return HttpStatus.OK;
     }
 }
