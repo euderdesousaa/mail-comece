@@ -7,12 +7,13 @@ public enum Segment {
     ECOMMERCE,
     FOOD_SERVICE,
     EDUCACAO,
-    IMOBILIARIA,
+    IMOBILIARIO,
     SAAS,
     FINANCAS,
     FRANQUIA,
     TELECOM,
     ENERGIA_SOLAR,
     TURISMO,
+    STARTUP,
     OUTROS
 }
