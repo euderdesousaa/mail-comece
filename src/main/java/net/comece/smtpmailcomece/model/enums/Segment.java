@@ -1,7 +1,7 @@
 package net.comece.smtpmailcomece.model.enums;
 
 public enum Segment {
-    SERVICOS,
+    SERVICO,
     VAREJO,
     INDUSTRIA,
     ECOMMERCE,
