@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/")
-@CrossOrigin(origins = {"https://comece.netlify.app/", "http://localhost:3000"}, maxAge = 3600)
+@CrossOrigin(origins = {"CROSS.ORIGINS"}, maxAge = 3600)
 @RequiredArgsConstructor
 public class EmailController {
 
@@ -17,7 +17,11 @@ public class EmailController {
 
     @PostMapping("/send-email")
     public HttpStatus sender(@RequestBody @Valid UserSender user) {
-        service.handleRequest(user);
-        return HttpStatus.OK;
+        if (service.isEmailPresent(user.getEmail())) {
+            return HttpStatus.ACCEPTED;
+        } else {
+            service.handleRequest(user);
+            return HttpStatus.OK;
+        }
     }
 }
