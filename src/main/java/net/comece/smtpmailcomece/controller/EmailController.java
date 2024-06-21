@@ -5,13 +5,11 @@ import lombok.RequiredArgsConstructor;
 import net.comece.smtpmailcomece.model.UserSender;
 import net.comece.smtpmailcomece.service.EmailService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/")
+@CrossOrigin(value = "[https://comece.netlify.app/#Lets, https://comece.netlify.app/]", maxAge = 3600)
 @RequiredArgsConstructor
 public class EmailController {
 
