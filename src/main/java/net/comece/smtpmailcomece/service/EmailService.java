@@ -17,6 +17,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -102,6 +103,11 @@ public class EmailService {
         sender.setDateAtCreate(LocalDate.now());
         repository.save(sender);
 
+    }
+
+    public boolean isEmailPresent(String email) {
+        Optional<UserSender> user = repository.findByEmail(email);
+        return user.isPresent();
     }
 
 }
