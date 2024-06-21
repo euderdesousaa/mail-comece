@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/")
-@CrossOrigin(value = "{[https://comece.netlify.app/#Lets, https://comece.netlify.app/]}", maxAge = 3600)
+@CrossOrigin(value = "https://comece.netlify.app/", maxAge = 3600)
 @RequiredArgsConstructor
 public class EmailController {
 
