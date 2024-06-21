@@ -5,7 +5,6 @@ import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.comece.smtpmailcomece.model.UserSender;
-import net.comece.smtpmailcomece.model.enums.Segment;
 import net.comece.smtpmailcomece.repository.UserSenderRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -90,16 +89,11 @@ public class EmailService {
     private void saveEmail(UserSender user) {
         emailsSender(user);
         user.setDateAtCreate(LocalDate.now());
-        if (user.getSegment() == null) {
-            user.setSegment(Segment.OUTROS);
-        } else {
-            user.setSegment(user.getSegment());
-        }
         user.setSegment(user.getSegment());
         repository.save(user);
     }
 
-    private void waitEmailDbBack(UserSender sender){
+    private void waitEmailDbBack(UserSender sender) {
         sender.setDateAtCreate(LocalDate.now());
         repository.save(sender);
 

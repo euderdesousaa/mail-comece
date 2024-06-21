@@ -15,5 +15,5 @@ public enum Segment {
     ENERGIA_SOLAR,
     TURISMO,
     STARTUP,
-    OUTROS
+    OUTRO
 }
