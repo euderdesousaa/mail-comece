@@ -1,0 +1,30 @@
+{
+  "name": "smtp-mail-comece",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./src/main/resources/static/input.css -o ./src/main/resources/static/output.css --watch",
+    "build:css": "postcss ./src/main/resources/static/input.css -o ./src/main/resources/static/output.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/euderdesousaa/mail-comece.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/euderdesousaa/mail-comece/issues"
+  },
+  "homepage": "https://github.com/euderdesousaa/mail-comece#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.7"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.40",
+    "postcss-cli": "^11.0.0",
+    "postcss-load-config": "^2.1.2"
+  }
+}

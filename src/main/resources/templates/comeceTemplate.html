@@ -1,117 +1,152 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt">
+<html lang="en">
+
 <head>
-    <title>Bem-vindo ao Nosso Serviço</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engix</title>
     <style>
+        /* Estilos Gerais */
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .container {
-            width: 80%;
-            margin: 0 auto;
-        }
-
-        .description{
-            border: groove black;
-            border-radius: 3%;
-        }
-
-        .header {
-            background-color: #f8f9fa;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .header h1 {
-            color: #333;
             margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
         }
 
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        /* Cabeçalho Azul */
+        .header {
+            background-color: #4F3FFF;
+            /* Azul */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header img {
+            max-width: 250px;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        /* Corpo do Email */
         .content {
-            padding: 20px;
+            padding: 30px;
+            color: #333333;
         }
 
-        .body {
-            margin: 20px 0;
+        .content p {
+            font-size: 16px;
+            line-height: 1.5;
         }
 
-        .features {
-            margin: 20px 0;
-        }
-
-        .features ul {
+        .content ul {
             padding-left: 20px;
+            margin-top: 20px;
         }
 
-        .cta {
-            text-align: center;
-            margin: 40px 0;
+        .content ul li {
+            margin-bottom: 15px;
+            font-size: 16px;
         }
 
-        .cta a {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
+        /* Rodapé */
         .footer {
-            background-color: #f8f9fa;
-            padding: 20px;
             text-align: center;
-            font-size: 12px;
-            border-top: 1px solid #ddd;
+            padding: 20px;
+            background-color: #fff;
+            color: #888888;
+            font-size: 14px;
+            margin-bottom: 100px;
         }
 
-        .footer p {
-            color: #333;
-            margin: 5px 0;
+        /* Links do Rodapé */
+        .footer a {
+            color: #4F3FFF;
+            font-weight: bold;
+            text-decoration: none;
+            background-color: #ffffff;
         }
 
-        .footer .highlight {
-            color: red;
+        /* Responsividade */
+        @media only screen and (max-width: 600px) {
+            .content {
+                padding: 20px;
+                padding-bottom: 10px;
+            }
+
+            .header img {
+                max-width: 150px;
+            }
+
+            .all {
+                padding-top: 10px;
+            }
+
+            .content p,
+            .content ul li {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
+
 <body>
-<div class='container'>
-    <div class='header'>
-        <h1>Bem-vindo ao Nosso Serviço!</h1>
-    </div>
-    <p class="description" th:text="${user?.description}"></p>
-    <div class='content'>
-        <div class='body'>
-            <p th:text="${'Olá, '+ user?.email}"></p>
-            <p>Estamos muito felizes em tê-lo conosco. A seguir, algumas informações importantes para ajudá-lo a
-                começar:</p>
-        </div>
-        <div class='features'>
-            <h2>Principais Recursos</h2>
+<table class="all">
+
+    <!-- Cabeçalho Azul -->
+    <tr>
+        <td class="header">
+            <img src="https://images.unsplash.com/photo-1565130838609-c3a86655db61?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fGxhbmRzY2FwZXxlbnwwfHx8fDE2Mzg4NTk3MTE&ixlib=rb-1.2.1&q=80&w=1080" alt="Logo">
+        </td>
+    </tr>
+
+    <!-- Corpo do Email -->
+    <tr>
+        <td class="content">
+            <p>Olá <span class="font-semibold" th:text="${fullName}">Nome</span>,</p>
+
+            <p>
+                Obrigado por entrar em contato conosco! Nós recebemos seu formulário e nossa equipe entrará em contato o mais
+                rápido possível. Aqui estão as informações de contato que você nos forneceu:
+            </p>
+
             <ul>
-                <li><strong>Fácil Navegação:</strong> Nossa plataforma é intuitiva e fácil de usar.</li>
-                <li><strong>Suporte 24/7:</strong> Nossa equipe está disponível para ajudá-lo a qualquer momento.</li>
-                <li><strong>Segurança:</strong> Seus dados estão seguros conosco, com proteção de ponta a ponta.</li>
+                <li><strong> <span th:text="${fullName}">Nome</span></li>
+                <li><strong class="text-preto">Email:</strong> <span th:text="${email}">Email</span></li>
+                <li><strong class="text-preto">Telefone:</strong> <span th:text="${phoneNumber}">Telefone</span></li>
             </ul>
-        </div>
-        <div class='cta'>
-            <p>Pronto para explorar? Comece agora mesmo clicando no botão abaixo:</p>
-            <a href='https://example.com/login' target='_blank'>Acessar a Plataforma</a>
-        </div>
-        <div class='body'>
-            <p>Se precisar de ajuda, não hesite em entrar em contato com nosso suporte. Estamos aqui para garantir que
-                você tenha a melhor experiência possível.</p>
-            <p>Atenciosamente,<br>A Equipe do Nosso Serviço</p>
-        </div>
-    </div>
-    <div class='footer'>
-        <p>&copy; 2024 Nosso Serviço. Todos os direitos reservados.</p>
-        <p><span class='highlight'>Comece</span> sua jornada conosco hoje!</p>
-    </div>
-</div>
+
+            <p>
+                Enquanto isso, sinta-se à vontade para visitar nosso site ou nos seguir nas redes sociais para ficar por
+                dentro das novidades.
+            </p>
+
+            <p>
+                Se você tiver mais alguma dúvida ou precisar de mais informações, não hesite em nos contatar.
+            </p>
+
+            <p>Agradecemos pela sua confiança em nossos serviços!</p>
+        </td>
+    </tr>
+
+    <!-- Rodapé -->
+    <tr>
+        <td class="footer">
+            Atenciosamente,<br>
+            <strong>Euder</strong><br>
+            Co-Fundador<br>
+            <a href="https://engix.tech">engix.tech</a>
+        </td>
+    </tr>
+</table>
 </body>
-</html>;
+
+</html>

@@ -1,5 +1,8 @@
 package net.comece.smtpmailcomece.service;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +18,8 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import java.io.IOException;
+import java.io.StringWriter;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Queue;
@@ -35,6 +40,8 @@ public class EmailService {
 
     @Value("${COMECE.MAIL.EMAIL}")
     private String toEmail;
+
+    private final Configuration freemarkerConfig;
 
     private final Queue<UserSender> requestQueue = new ConcurrentLinkedQueue<>();
 
@@ -60,14 +67,18 @@ public class EmailService {
         }
     }
 
-    private void sendEmail(UserSender sender, String templateName, String subject, String toEmail) throws MessagingException {
+    private void sendEmail(UserSender sender, String linkTemplate,String subject, String toEmail) throws MessagingException, TemplateException, IOException {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true,"UTF-8");
+
+        Template template = freemarkerConfig.getTemplate(linkTemplate);
+        StringWriter writer = new StringWriter();
+        template.process(sender, writer);
 
         Context context = new Context();
         context.setVariable("user", sender);
 
-        String htmlContent = templateEngine.process(templateName, context);
+        String htmlContent = writer.toString();
         helper.setFrom(emailSender);
         helper.setTo(toEmail);
         helper.setSubject(subject);
@@ -79,9 +90,9 @@ public class EmailService {
 
     protected void emailsSender(UserSender sender) {
         try {
-            sendEmail(sender, "template.html", "Welcome " + sender.getFullName(), sender.getEmail());
-            sendEmail(sender, "comeceTemplate.html", sender.getFullName() + " está a nossa espera", toEmail);
-        } catch (MessagingException e) {
+            sendEmail(sender,  "template.ftl","Welcome " + sender.getFullName(), sender.getEmail());
+            sendEmail(sender,"templateEnvio.ftl", sender.getFullName() + " está a nossa espera", toEmail);
+        } catch (MessagingException | TemplateException | IOException e) {
             log.error("Error sending email: {}", e.getMessage());
         }
     }
