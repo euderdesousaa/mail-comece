@@ -108,7 +108,6 @@
     <tr>
         <td class="header">
             <a href='https://postimg.cc/rDw4MQnV' target='_blank'><img src='https://i.postimg.cc/rDw4MQnV/Camada-6.png' border='0' alt='Logo'/></a>
-            <img src="https://i.ibb.co/P62ry3f/Logopng.png" alt="Logopng">
         </td>
     </tr>
 
