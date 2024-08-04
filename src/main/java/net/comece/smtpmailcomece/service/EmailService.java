@@ -90,7 +90,7 @@ public class EmailService {
 
     protected void emailsSender(UserSender sender) {
         try {
-            sendEmail(sender,  "template.ftl","Welcome " + sender.getFullName(), sender.getEmail());
+            sendEmail(sender,  "template.ftl","Bem Vindo a Engix, " + sender.getFullName(), sender.getEmail());
             sendEmail(sender,"templateEnvio.ftl", sender.getFullName() + " está a nossa espera", toEmail);
         } catch (MessagingException | TemplateException | IOException e) {
             log.error("Error sending email: {}", e.getMessage());
