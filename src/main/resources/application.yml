@@ -1,8 +1,6 @@
 spring:
   jpa:
     database: postgresql
-    hibernate:
-      ddl-auto: create-drop
   datasource:
     url: ${COMECE.DATABASE.URL}
     username: ${COMECE.DATABASE.USERNAME}
